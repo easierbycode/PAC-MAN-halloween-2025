@@ -1,5 +1,5 @@
 
-import Phaser from 'https://esm.sh/phaser@4.0.0-rc5';
+import Phaser from 'https://esm.sh/phaser@3.80.1';
 
 
 let foo = {
