@@ -1,3 +1,5 @@
+![screenshot](docs/screenshot.png)
+
 https://phaser.io/news/2025/10/pac-man-halloween-2025-edition
 
 Google is marking PAC-MAN's 45th anniversary with a Halloween-themed Doodle that brings the arcade legend back to life using Phaser 3. Built in collaboration with Bandai Namco Entertainment, the game offers eight levels of ghost-chomping action, including four specially crafted haunted-house mazes.
