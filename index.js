@@ -82657,10 +82657,10 @@ var Y = class extends dd {
         return mc`
       <div class="logo-wrapper" ${X(this.te)}>
         <img
-          src="https://easierbycode.github.io/phaser4-sandbox/images/phaser4logo.png"
+          src="https://easierbycode.com/phaser4-sandbox/images/phaser4logo.png"
           srcset="
-            https://easierbycode.github.io/phaser4-sandbox/images/phaser4logo.png 1x,
-            https://easierbycode.github.io/phaser4-sandbox/images/phaser4logo.png 2x
+            https://easierbycode.com/phaser4-sandbox/images/phaser4logo.png 1x,
+            https://easierbycode.com/phaser4-sandbox/images/phaser4logo.png 2x
           "
           alt="Google Halloween Pac-Man logo" draggable="false" />
       </div>
