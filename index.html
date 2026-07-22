@@ -31,6 +31,53 @@
         content="Today&#39;s interactive Doodle features a special Halloween edition of PAC-MAN, celebrating 45 years of this classic game. Click to play!">
     <meta name="twitter:image" content="./pacman/halloween/static/share/share.png">
     <title>PAC-MAN: Halloween 2025 Edition</title>
+    <style>
+        .inLauncher .logo-wrapper {
+            display: none !important;
+        }
+    </style>
+    <script>
+        // CMG launcher integration. The launcher marks this document with
+        // .inLauncher — stamped straight onto <html> when the frame is
+        // same-origin, otherwise announced with a cmg-in-launcher message that
+        // we apply here. In that mode the launcher already frames the game, so
+        // the in-game logo is redundant.
+        //
+        // .logo-wrapper renders inside pcm-game's shadow root, where the page
+        // stylesheet above can't reach it, so the hide rule has to be planted in
+        // every shadow root the app opens. This runs before the deferred game
+        // bundle, so no root is created before the patch is in place.
+        (function () {
+            var HIDE = '.logo-wrapper{display:none!important}';
+            var roots = [];
+            var attachShadow = Element.prototype.attachShadow;
+            Element.prototype.attachShadow = function () {
+                var root = attachShadow.apply(this, arguments);
+                roots.push(root);
+                sync(root);
+                return root;
+            };
+            function sync(root) {
+                var on = document.documentElement.classList.contains('inLauncher');
+                var style = root.querySelector('style[data-cmg-in-launcher]');
+                if (on && !style) {
+                    style = document.createElement('style');
+                    style.setAttribute('data-cmg-in-launcher', '');
+                    style.textContent = HIDE;
+                    root.appendChild(style);
+                } else if (!on && style) {
+                    style.remove();
+                }
+            }
+            new MutationObserver(function () {
+                roots.forEach(sync);
+            }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+            addEventListener('message', function (e) {
+                if (e.source !== parent || !e.data || e.data.type !== 'cmg-in-launcher') return;
+                document.documentElement.classList.toggle('inLauncher', e.data.value !== false);
+            });
+        })();
+    </script>
 </head>
 
 <body>
